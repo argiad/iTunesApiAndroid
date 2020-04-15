@@ -2,6 +2,8 @@ package com.crtmg.itunesapiandroid
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import com.crtmg.itunesapi.iTunesApi
@@ -11,14 +13,14 @@ import kotlinx.android.synthetic.main.main.*
 
 class MainActivity : AppCompatActivity() {
 
+    val mainFragment =  MainFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.main)
 
-        supportFragmentManager.beginTransaction().replace(R.id.container, MainFragment()).commit()
-
-
+        supportFragmentManager.beginTransaction().replace(R.id.container, mainFragment).commit()
 
         searchView.setOnCloseListener {
             Log.e("SEARCH", "ON CLOSE")
@@ -40,5 +42,23 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
 
+        if (!checkFocusRec(searchView)) {
+            mainFragment.showFav()
+        }
+    }
+
+
+    private fun checkFocusRec(view: View): Boolean {
+        if (view.isFocused) return true
+        if (view is ViewGroup) {
+            val viewGroup = view as ViewGroup
+            for (i in 0 until viewGroup.childCount) {
+                if (checkFocusRec(viewGroup.getChildAt(i))) return true
+            }
+        }
+        return false
+    }
 }

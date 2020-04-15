@@ -28,6 +28,13 @@ class MainFragment : Fragment() {
         return mFragmentRootView
     }
 
+    fun showFav() {
+        adapter.apply {
+            itemList = RoomHelper.getFavList() ?: arrayListOf()
+            notifyDataSetChanged()
+        }
+    }
+
     private fun initView(fragmentRootView: View) {
         adapter = ResultListAdapter()
 

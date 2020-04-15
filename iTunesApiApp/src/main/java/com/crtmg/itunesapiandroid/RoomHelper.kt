@@ -4,14 +4,19 @@ import android.content.Context
 import androidx.room.*
 import com.crtmg.itunesapi.iTunesItem
 
-class RoomHelper {
+object RoomHelper {
     private var db: AppDatabase? = null
 
-    fun initDB(context: Context) {
-        db = Room.databaseBuilder(
-            context,
-            AppDatabase::class.java, "database-name"
-        ).build()
+    fun initDB(context: Context): RoomHelper {
+        if (db == null) {
+            db = Room.databaseBuilder(
+                context,
+                AppDatabase::class.java, "database-name"
+            )
+                .allowMainThreadQueries() // DONT DO THIS ANY TIME !!!! :)
+                .build()
+        }
+        return this
     }
 
     fun isInFav(item: iTunesItem): Boolean {
@@ -32,6 +37,7 @@ class RoomHelper {
     }
 
     fun getFavList(): List<iTunesItem>? {
+
         return db?.userDao()?.getAll()?.map { iTunesItem.createFrom(it.itemJson) }
     }
 

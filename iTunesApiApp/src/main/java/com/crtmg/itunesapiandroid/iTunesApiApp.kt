@@ -9,5 +9,6 @@ class iTunesApiApp: Application() {
         super.onCreate()
 
         iTunesApi.initWith(applicationContext)
+        RoomHelper.initDB(applicationContext)
     }
 }

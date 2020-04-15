@@ -3,6 +3,7 @@ package com.crtmg.itunesapiandroid
 import android.graphics.Bitmap
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.collection.LruCache
@@ -52,6 +53,14 @@ class ResultListAdapter : RecyclerView.Adapter<ResultListAdapter.ResultViewHolde
             itemView.author_name.text = item.artistName
             itemView.album_name_tv.text = item.trackName
             loadImage(item)
+
+            itemView.setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_UP) {
+                    (v.context as? MainActivityInterface)?.showDetailFor(item)
+                    return@setOnTouchListener true
+                }
+                return@setOnTouchListener false
+            }
         }
 
         private fun loadImage(item: iTunesItem) {

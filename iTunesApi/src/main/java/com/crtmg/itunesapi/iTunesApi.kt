@@ -65,8 +65,8 @@ internal object iTunesRequestManager {
 
 //                println(it.toString())
 
-                val json = Json(JsonConfiguration(ignoreUnknownKeys = true) )
-                val obj = json.parse(iTunesResult.serializer(),it.toString())
+                val json = Json(JsonConfiguration(ignoreUnknownKeys = true))
+                val obj = json.parse(iTunesResult.serializer(), it.toString())
 //                println(obj)
                 iTunesApi.callback?.response(obj)
             },
@@ -193,7 +193,20 @@ data class iTunesItem(
     val shortDescription: String? = null,
     val longDescription: String? = null,
     val hasITunesExtras: Boolean? = null
-)
+) {
+    val jsonString: String
+        get() {
+            val json = Json(JsonConfiguration(ignoreUnknownKeys = true))
+            return json.stringify(serializer(), this)
+        }
+
+    companion object{
+        fun createFrom(string: String): iTunesItem {
+            val json = Json(JsonConfiguration(ignoreUnknownKeys = true))
+            return json.parse(serializer(), string)
+        }
+    }
+}
 
 @Serializable
 data class iTunesResult(

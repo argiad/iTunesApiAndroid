@@ -13,7 +13,7 @@ object RoomHelper {
                 context,
                 AppDatabase::class.java, "database-name"
             )
-                .allowMainThreadQueries() // DONT DO THIS ANY TIME !!!! :)
+                .allowMainThreadQueries() // DONT DO THIS EVER !!!! :)
                 .build()
         }
         return this

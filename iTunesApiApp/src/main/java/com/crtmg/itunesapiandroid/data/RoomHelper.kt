@@ -1,4 +1,4 @@
-package com.crtmg.itunesapiandroid
+package com.crtmg.itunesapiandroid.data
 
 import android.content.Context
 import androidx.room.*
@@ -27,7 +27,12 @@ object RoomHelper {
     fun changeState(like: Boolean, item: iTunesItem) {
         if (like != isInFav(item)) {
             if (like) {
-                db?.userDao()?.insertAll(DBItem(item.trackID!!, item.jsonString))
+                db?.userDao()?.insertAll(
+                    DBItem(
+                        item.trackID!!,
+                        item.jsonString
+                    )
+                )
             } else {
                 (db?.userDao()?.loadAllByIds(listOf(item.trackID!!)))?.firstOrNull()?.let {
                     db?.userDao()?.delete(it)

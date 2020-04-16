@@ -1,4 +1,4 @@
-package com.crtmg.itunesapiandroid
+package com.crtmg.itunesapiandroid.view
 
 import android.content.Context
 import android.os.Bundle
@@ -11,13 +11,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.crtmg.itunesapi.iTunesApi
 import com.crtmg.itunesapi.iTunesItem
 import com.crtmg.itunesapi.iTunesSearchRequest
+import com.crtmg.itunesapiandroid.R
+import com.crtmg.itunesapiandroid.view.fragment.DetailFragment
+import com.crtmg.itunesapiandroid.view.fragment.MainFragment
 import kotlinx.android.synthetic.main.main.*
 
 
-class MainActivity : AppCompatActivity(), MainActivityInterface {
+class MainActivity : AppCompatActivity(),
+    MainActivityInterface {
 
     val mainFragment = MainFragment()
-    val detailFragment = DetailFragment()
+    val detailFragment =
+        DetailFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

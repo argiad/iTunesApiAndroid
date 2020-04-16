@@ -1,4 +1,4 @@
-package com.crtmg.itunesapiandroid
+package com.crtmg.itunesapiandroid.view.adapter
 
 import android.graphics.Bitmap
 import android.util.Log
@@ -14,6 +14,8 @@ import com.crtmg.itunesapi.iTunesApi
 import com.crtmg.itunesapi.iTunesApiCallback
 import com.crtmg.itunesapi.iTunesItem
 import com.crtmg.itunesapi.iTunesResult
+import com.crtmg.itunesapiandroid.R
+import com.crtmg.itunesapiandroid.view.MainActivityInterface
 import kotlinx.android.synthetic.main.album_item.view.*
 
 class ResultListAdapter : RecyclerView.Adapter<ResultListAdapter.ResultViewHolder>() {

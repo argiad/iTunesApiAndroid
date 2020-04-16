@@ -1,4 +1,4 @@
-package com.crtmg.itunesapiandroid
+package com.crtmg.itunesapiandroid.view
 
 import android.graphics.Rect
 import android.view.View

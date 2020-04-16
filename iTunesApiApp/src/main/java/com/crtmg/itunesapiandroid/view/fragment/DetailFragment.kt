@@ -1,4 +1,4 @@
-package com.crtmg.itunesapiandroid
+package com.crtmg.itunesapiandroid.view.fragment
 
 import android.graphics.Bitmap
 import android.view.View
@@ -7,7 +7,9 @@ import com.android.volley.toolbox.ImageLoader
 import com.android.volley.toolbox.NetworkImageView
 import com.android.volley.toolbox.Volley
 import com.crtmg.itunesapi.iTunesItem
-import kotlinx.android.synthetic.main.fragment_detail.*
+import com.crtmg.itunesapiandroid.R
+import com.crtmg.itunesapiandroid.data.RoomHelper
+import com.crtmg.itunesapiandroid.view.MainActivityInterface
 import kotlinx.android.synthetic.main.fragment_detail.view.*
 
 class DetailFragment : BaseFragment<MainActivityInterface>() {
@@ -23,7 +25,8 @@ class DetailFragment : BaseFragment<MainActivityInterface>() {
             loadImage(it, fragmentRootView.imageView)
             fragmentRootView.tvArtistName.text = it.artistName
             fragmentRootView.tvTrackName.text = it.trackName
-            fragmentRootView.swLike.isChecked = RoomHelper.isInFav(it)
+            fragmentRootView.swLike.isChecked =
+                RoomHelper.isInFav(it)
 
             fragmentRootView.swLike.setOnCheckedChangeListener { _, isChecked ->
                 RoomHelper.changeState(isChecked, it)

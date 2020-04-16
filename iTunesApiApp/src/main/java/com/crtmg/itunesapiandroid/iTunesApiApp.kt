@@ -2,6 +2,7 @@ package com.crtmg.itunesapiandroid
 
 import android.app.Application
 import com.crtmg.itunesapi.iTunesApi
+import com.crtmg.itunesapiandroid.data.RoomHelper
 
 class iTunesApiApp: Application() {
 

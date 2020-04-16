@@ -1,4 +1,4 @@
-package com.crtmg.itunesapiandroid
+package com.crtmg.itunesapiandroid.view.fragment
 
 import android.content.Context
 import android.os.Bundle
